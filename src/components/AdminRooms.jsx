@@ -13,7 +13,7 @@ function AdminRooms() {
     }, []);
 
     const loadRooms = () => {
-        axios.get('http://localhost:3000/ps')
+        axios.get(`${import.meta.env.VITE_API_URL}/ps`)
             .then(res => setRooms(res.data))
             .catch(() => alert("Gagal memuat data"));
     };
@@ -23,8 +23,8 @@ function AdminRooms() {
         const data = { name, price, capacity };
 
         const request = editId
-            ? axios.put(`http://localhost:3000/ps/update/${editId}`, data)
-            : axios.post('http://localhost:3000/ps/add', data);
+            ? axios.put(`${import.meta.env.VITE_API_URL}/ps/update/${editId}`, data)
+            : axios.post(`${import.meta.env.VITE_API_URL}/ps/add`, data);
 
         request.then(() => {
             resetForm();
@@ -49,7 +49,7 @@ function AdminRooms() {
 
     const handleDelete = (id) => {
         if (window.confirm("Yakin ingin menghapus Room ini?")) {
-            axios.delete(`http://localhost:3000/ps/delete/${id}`)
+            axios.delete(`${import.meta.env.VITE_API_URL}/ps/delete/${id}`)
                 .then(() => loadRooms());
         }
     };

@@ -6,7 +6,7 @@ const PSList = () => {
 
   useEffect(() => {
     // Ambil data dari backend
-    axios.get('http://localhost:3000/ps')
+    axios.get(`${import.meta.env.VITE_API_URL}/ps`)
       .then((response) => {
         setPsList(response.data);
       })

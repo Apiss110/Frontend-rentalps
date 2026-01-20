@@ -10,7 +10,7 @@ function AdminCustomers() {
     }, []);
 
     const loadCustomers = () => {
-        axios.get('http://localhost:3000/auth/users')
+        axios.get(`${import.meta.env.VITE_API_URL}/auth/users`)
             .then(res => {
                 const userOnly = res.data.filter(u => u.role === 'user');
                 setCustomers(userOnly);
@@ -20,7 +20,7 @@ function AdminCustomers() {
 
     const handleDelete = (id) => {
         if(window.confirm("Yakin ingin menonaktifkan Pelanggan ini? (Riwayat transaksi akan tetap aman)")) {
-            axios.delete('http://localhost:3000/auth/delete/' + id)
+            axios.delete(`${import.meta.env.VITE_API_URL}/auth/delete/` + id)
                 .then(res => {
                     if(res.data.Status === "Success") {
                         alert("Pelanggan berhasil dinonaktifkan.");

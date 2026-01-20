@@ -13,7 +13,7 @@ function UserTransactionDetail() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/rentals/detail/" + id)
+      .get(`${import.meta.env.VITE_API_URL}/rentals/detail/${id}`)
       .then((res) => {
         setTransaction(res.data);
         if (res.data?.payment_method) setPaymentMethod(res.data.payment_method);
@@ -25,7 +25,7 @@ function UserTransactionDetail() {
   useEffect(() => {
     const interval = setInterval(() => {
       axios
-        .get("http://localhost:3000/rentals/detail/" + id)
+        .get(`${import.meta.env.VITE_API_URL}/rentals/detail/${id}`)
         .then((res) => {
           if (res.data) {
             setTransaction((prev) => ({ ...prev, payment_status: res.data.payment_status }));

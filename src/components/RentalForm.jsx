@@ -9,7 +9,7 @@ function RentalForm({ onRent }) {
 
   useEffect(() => {
     // Ambil data PS untuk dropdown
-    axios.get("http://localhost:3000/ps")
+    axios.get(`${import.meta.env.VITE_API_URL}/ps`)
       .then((res) => setPsUnits(res.data))
       .catch((err) => console.error(err));
   }, []);
@@ -30,7 +30,7 @@ function RentalForm({ onRent }) {
     const price = unit ? unit.price_per_hour : 0; 
     const totalPrice = price * duration;
 
-    axios.post("http://localhost:3000/rentals", {
+    axios.post(`${import.meta.env.VITE_API_URL}/rentals`, {
       ps_id: selectedPS,
       user_id: userId, // <--- KIRIM ID USER
       duration: duration,

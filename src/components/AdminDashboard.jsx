@@ -25,9 +25,9 @@ function AdminDashboard() {
         if (!isSilent) setLoading(true);
 
         Promise.all([
-            axios.get('http://localhost:3000/rentals'),
-            axios.get('http://localhost:3000/ps'),
-            axios.get('http://localhost:3000/customers')
+            axios.get(`${import.meta.env.VITE_API_URL}/rentals`),
+            axios.get(`${import.meta.env.VITE_API_URL}/ps`),
+            axios.get(`${import.meta.env.VITE_API_URL}/customers`)
         ])
         .then(([resRentals, resRooms, resUsers]) => {
             setRentals(resRentals.data || []);

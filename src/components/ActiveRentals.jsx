@@ -6,7 +6,7 @@ export default function ActiveRentals({ refresh }) {
 
   useEffect(() => {
     const fetchRentals = () => {
-      axios.get("http://localhost:3000/rentals/active")
+      axios.get(`${import.meta.env.VITE_API_URL}/rentals/active`)
         .then(res => setRentals(res.data))
         .catch(err => console.error(err));
     };

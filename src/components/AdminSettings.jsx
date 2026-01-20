@@ -14,7 +14,7 @@ function AdminSettings() {
     }, []);
 
     const loadUsers = () => {
-        axios.get('http://localhost:3000/auth/users')
+        axios.get(`${import.meta.env.VITE_API_URL}/auth/users`)
             .then(res => setUsers(res.data))
             .catch(err => console.error(err));
     };
@@ -26,7 +26,7 @@ function AdminSettings() {
             return alert("Harap isi semua kolom!");
         }
 
-        axios.post('http://localhost:3000/auth/create-admin', {
+        axios.post(`${import.meta.env.VITE_API_URL}/auth/create-admin`, {
             username, email, phone, password
         })
         .then(res => {
@@ -45,7 +45,7 @@ function AdminSettings() {
 
     const handleDelete = (id) => {
         if (window.confirm("Yakin ingin menghapus admin ini?")) {
-            axios.delete('http://localhost:3000/auth/delete/' + id)
+            axios.delete(`${import.meta.env.VITE_API_URL}/auth/delete/${id}`)
                 .then(() => loadUsers());
         }
     };

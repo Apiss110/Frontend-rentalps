@@ -22,7 +22,7 @@ function AdminReports() {
     }, []);
 
     const loadReports = () => {
-        axios.get('http://localhost:3000/rentals/reports')
+        axios.get(`${import.meta.env.VITE_API_URL}/rentals/reports`)
             .then(res => setReports(res.data))
             .catch(err => console.error(err));
     };

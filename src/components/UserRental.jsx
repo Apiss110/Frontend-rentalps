@@ -36,7 +36,7 @@ function UserRental() {
   useEffect(() => {
     loadData();
     const interval = setInterval(() => {
-      axios.get("http://localhost:3000/rentals")
+      axios.get(`${import.meta.env.VITE_API_URL}/rentals`)
         .then((res) => setAllRentals(res.data))
         .catch((err) => console.error(err));
     }, 3000); 
@@ -45,9 +45,9 @@ function UserRental() {
 
   const loadData = async () => {
     try {
-      const resPS = await axios.get("http://localhost:3000/ps");
+      const resPS = await axios.get(`${import.meta.env.VITE_API_URL}/ps`);
       setPsList(resPS.data || []);
-      const resRentals = await axios.get("http://localhost:3000/rentals");
+      const resRentals = await axios.get(`${import.meta.env.VITE_API_URL}/rentals`);
       setAllRentals(resRentals.data || []);
     } catch (error) { console.error("Gagal ambil data:", error); }
   };

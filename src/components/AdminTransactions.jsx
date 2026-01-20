@@ -22,7 +22,7 @@ function AdminTransactions() {
     }, []);
 
     const loadTransactions = () => {
-        axios.get('http://localhost:3000/rentals')
+        axios.get(`${import.meta.env.VITE_API_URL}/rentals`)
             .then(res => setTransactions(res.data))
             .catch(err => console.error(err));
     };
@@ -38,7 +38,7 @@ function AdminTransactions() {
     // --- FUNGSI STOP MANUAL ---
     const handleManualFinish = (id) => {
         if(window.confirm("Yakin ingin menyelesaikan sewa ini sekarang? Slot akan langsung dibuka.")) {
-            axios.put(`http://localhost:3000/rentals/finish/${id}`)
+            axios.put(`${import.meta.env.VITE_API_URL}/rentals/finish/${id}`)
                 .then(res => {
                     if(res.data.Status === "Success") {
                         alert("Sewa berhasil dihentikan!");
@@ -54,7 +54,7 @@ function AdminTransactions() {
     const handleVerify = (id, action) => {
         const msg = action === 'accept' ? "Yakin ingin MENYETUJUI?" : "Yakin ingin MENOLAK?";
         if (window.confirm(msg)) {
-            axios.put(`http://localhost:3000/rentals/verify/${id}`, { action })
+            axios.put(`${import.meta.env.VITE_API_URL}/rentals/verify/${id}`, { action })
                 .then(res => {
                     if (res.data.Status === "Success") {
                         loadTransactions();
@@ -66,7 +66,7 @@ function AdminTransactions() {
     };
 
     const handleViewProof = (file) => {
-        if (file) window.open(`http://localhost:3000/uploads/${file}`, '_blank');
+        if (file) window.open(`${import.meta.env.VITE_API_URL}/uploads/${file}`, '_blank');
         else alert("Tidak ada bukti upload.");
     };
 

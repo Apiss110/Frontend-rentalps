@@ -22,7 +22,7 @@ function Register() {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3000/auth/register", values)
+      .post(`${import.meta.env.VITE_API_URL}/auth/register`, values)
       .then((res) => {
         if (res.data.Status === "Success") {
           alert("Akun berhasil dibuat. Silakan login.");
